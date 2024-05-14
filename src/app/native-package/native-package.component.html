@@ -1,0 +1,15 @@
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>version</th>
+        <th>description</th>
+    </tr>
+
+    @for (package of packages; track package) {
+        <tr>
+            <td>{{ package.name }}</td>
+            <td>{{ package.version }}</td>
+            <td>{{ package.description }}</td>
+        </tr>
+    }
+</table>

@@ -1,27 +1,108 @@
-# PacmanApiAngular
+# Consume an endpoint (http://localhost:8080/api/v1/native/packages/installed/explicit)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+## Install and create project
+```
+sudo npm install -g @angular/cli
+ng new pacman-api-angular
+ng generate component native-package
+```
 
-## Development server
+## Package.ts (en native-package/model)
+```
+export interface Package {
+    name: string;
+    version: string;
+    description: string;
+}
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## ApiResponse.ts (en native-package/model)
+```
+import { Package } from "./Package";
 
-## Code scaffolding
+export interface ApiResponse {
+    packages: Package[];
+}
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## native-package.component.ts
 
-## Build
+```
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Package } from './model/Package';
+import { ApiResponse } from './model/ApiResponse';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+@Component({
+  selector: 'app-native-package',
+  templateUrl: './native-package.component.html',
+  styleUrls: ['./native-package.component.css']
+})
+export class NativePackageComponent {
 
-## Running unit tests
+  packages: Package[] = []
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor(private http: HttpClient) {
+    this.getData();
+  }
 
-## Running end-to-end tests
+  getData() {
+    this.http.get<ApiResponse>('http://localhost:8080/api/v1/native/packages/installed/explicit').subscribe(data => {
+      this.packages = data.packages;
+    });
+  }
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## native-package.component.html
+```
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>version</th>
+        <th>description</th>
+    </tr>
 
-## Further help
+    @for (package of packages; track package) {
+        <tr>
+            <td>{{ package.name }}</td>
+            <td>{{ package.version }}</td>
+            <td>{{ package.description }}</td>
+        </tr>
+    }
+</table>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## app.component.html
+```
+<router-outlet />
+```
+
+## app.routes.ts
+```
+import { Routes } from '@angular/router';
+import { NativePackageComponent } from './native-package/native-package.component';
+
+export const routes: Routes = [
+  { path: 'native/packs', component: NativePackageComponent }
+];
+```
+
+## add HttpClientModule, CommonModule in app.component.ts
+```
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, HttpClientModule, CommonModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'pacman-api-angular';
+}
+```
