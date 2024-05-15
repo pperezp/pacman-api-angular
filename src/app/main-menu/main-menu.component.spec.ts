@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NativePackageComponent } from './native-package.component';
+import { MainMenuComponent } from './main-menu.component';
 
-describe('NativePackageComponent', () => {
-  let component: NativePackageComponent;
-  let fixture: ComponentFixture<NativePackageComponent>;
+describe('MainMenuComponent', () => {
+  let component: MainMenuComponent;
+  let fixture: ComponentFixture<MainMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NativePackageComponent]
+      imports: [MainMenuComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NativePackageComponent);
+    fixture = TestBed.createComponent(MainMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,43 @@
+<h1>PacMan API Consumer</h1>
+
+<h2>Native packages</h2>
+<ul>
+    <li><button (click)="getInstalledPackages()">Get Installed Packages (Explicit)</button></li>
+    <li><button id="getLiteInstalledPackagesBtn">Get Installed Packages (Explicit) - Lite Version</button></li>
+    <li><button id="getPackagesToUpgradeBtn">Get Packages to Upgrade</button></li>
+    <li><button id="getInstalledPackageByNameBtn">Get Installed Package by Name</button></li>
+</ul>
+
+<h2>Foreign packages</h2>
+<ul>
+    <li><button id="getInstalledPackagesBtn2">Get Installed Packages (Explicit)</button></li>
+    <li><button id="getLiteInstalledPackagesBtn2">Get Installed Packages (Explicit) - Lite Version</button></li>
+    <li><button id="getPackagesToUpgradeBtn2">Get Packages to Upgrade</button></li>
+    <li><button id="getInstalledPackageByNameBtn2">Get Installed Package by Name</button></li>
+</ul>
+
+<h2>Group packages</h2>
+<ul>
+    <li><button id="getGroupsBtn">Get PacMan Groups</button></li>
+    <li><button id="getPackagesByGroupBtn">Get Packages by Group</button></li>
+    <li><button id="getPackageDetailsBtn">Get Package of group details</button></li>
+</ul>
+
+@if (explicitInstalledPackages.length > 0) { <!-- esta es la forma? mi idea es quizas crear componentes con los resultados, onda <explicit-packages> -->
+    Total Packages: {{ totalPackages }}
+    <table class="table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Description</th>
+        </tr>
+    
+        @for (package of explicitInstalledPackages; track package) {
+            <tr>
+                <td>{{ package.name }}</td>
+                <td>{{ package.version }}</td>
+                <td>{{ package.description }}</td>
+            </tr>
+        }
+    </table>
+}
