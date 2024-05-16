@@ -25,8 +25,11 @@
 
 <!-- TODO: esta es la forma?  -->
 <!-- TODO: no se por que es el comportamiento -->
-<!-- Se me ocurrio que en cada método get, dejar las otras listas como null, pero siento que es sucio -->
-@if (explicitInstalledPackages.length > 0) { 
+<!-- Se me ocurrio que en cada método get, 
+    inicializar las listas de nuevo, pero siento que es sucio -->
+<!-- ? si la variable es undefined, es falso -->
+
+@if (explicitInstalledPackages && explicitInstalledPackages.length > 0) { 
     Total Packages: {{ totalPackages }}
     <table class="table-bordered">
         <tr>
@@ -131,7 +134,7 @@
     </table>
 }
 
-@if (explicitInstalledPackagesLite.length > 0) { 
+@if (explicitInstalledPackagesLite && explicitInstalledPackagesLite.length > 0) { 
     Total Packages: {{ totalPackages }}
     <table class="table-bordered">
         <tr>

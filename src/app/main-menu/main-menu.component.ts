@@ -13,18 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class MainMenuComponent {
 
-    explicitInstalledPackages: Package[];
-    explicitInstalledPackagesLite: Package[];
-    totalPackages: number;
+    explicitInstalledPackages!: Package[];
+    explicitInstalledPackagesLite!: Package[];
+    totalPackages!: number;
 
     constructor(
         private router: Router,
         private nativePackagesService: NativePackagesService
     ) {
-        // TODO: es necesario inicializar todos los atributos?
-        this.totalPackages = 0;
-        this.explicitInstalledPackages = [];
-        this.explicitInstalledPackagesLite = [];
+        
     }
 
     getNativeInstalledPackages() {
