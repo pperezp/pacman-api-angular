@@ -8,11 +8,16 @@ import { ApiResponse } from '../model/ApiResponse';
 })
 export class NativePackagesService {
 
-    private apiUrl = 'http://localhost:8080/api/v1/native/packages/installed/explicit';
+    private GET_EXPLICIT_INSTALLED_PACKAGES_API_URL = 'http://localhost:8080/api/v1/native/packages/installed/explicit';
+    private GET_EXPLICIT_INSTALLED_PACKAGES_LITE_API_URL = "http://localhost:8080/api/v1/native/packages/installed/explicit/lite";
 
     constructor(private http: HttpClient) { }
 
     getExplicitInstalledPackages(): Observable<ApiResponse> {
-        return this.http.get<ApiResponse>(this.apiUrl);
+        return this.http.get<ApiResponse>(this.GET_EXPLICIT_INSTALLED_PACKAGES_API_URL);
+    }
+
+    getExplicitInstalledPackagesLite(): Observable<ApiResponse> {
+        return this.http.get<ApiResponse>(this.GET_EXPLICIT_INSTALLED_PACKAGES_LITE_API_URL);
     }
 }

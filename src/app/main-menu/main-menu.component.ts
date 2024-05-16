@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class MainMenuComponent {
 
     explicitInstalledPackages: Package[];
+    explicitInstalledPackagesLite: Package[];
     totalPackages: number;
 
     constructor(
@@ -22,14 +23,25 @@ export class MainMenuComponent {
     ) {
         // TODO: es necesario inicializar todos los atributos?
         this.totalPackages = 0;
-        this.explicitInstalledPackages = []
+        this.explicitInstalledPackages = [];
+        this.explicitInstalledPackagesLite = [];
     }
 
     getNativeInstalledPackages() {
         this.nativePackagesService.getExplicitInstalledPackages().subscribe(
-            data => {
-                this.explicitInstalledPackages = data.packages; // no entiendo donde puedo dibujar esto
+            response => {
+                this.explicitInstalledPackages = response.packages;
                 this.totalPackages = this.explicitInstalledPackages.length;
+            }
+        );
+    }
+
+    getExplicitInstalledPackagesLite() {
+        this.nativePackagesService.getExplicitInstalledPackagesLite().subscribe(
+            response => {
+                this.explicitInstalledPackagesLite = response.packages;
+                this.totalPackages = this.explicitInstalledPackagesLite.length;
+                console.log(response.packages);
             }
         );
     }
