@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { NativePackagesService } from '../services/native-packages.service';
-import { Package } from '../model/Package';
 import { HttpClientModule } from '@angular/common/http';
+import { NativeInstalledPackagesExplicitComponent } from '../native-installed-packages-explicit/native-installed-packages-explicit.component';
+import { Package } from '../../model/Package';
+import { NativePackagesService } from '../../services/native-packages.service';
+import { NativeInstalledPackagesExplicitLiteComponent } from '../native-installed-packages-explicit-lite/native-installed-packages-explicit-lite.component';
 
 @Component({
     selector: 'app-main-menu',
     standalone: true,
-    imports: [HttpClientModule],
+    imports: [HttpClientModule, NativeInstalledPackagesExplicitComponent, NativeInstalledPackagesExplicitLiteComponent],
     templateUrl: './main-menu.component.html',
     styleUrl: './main-menu.component.css'
 })
@@ -16,13 +18,8 @@ export class MainMenuComponent {
     explicitInstalledPackages!: Package[];
     explicitInstalledPackagesLite!: Package[];
     totalPackages!: number;
-
-    constructor(
-        private router: Router,
-        private nativePackagesService: NativePackagesService
-    ) {
-        
-    }
+    nativePackagesService = inject(NativePackagesService)
+    router = inject(Router)
 
     getNativeInstalledPackages() {
         this.nativePackagesService.getExplicitInstalledPackages().subscribe(

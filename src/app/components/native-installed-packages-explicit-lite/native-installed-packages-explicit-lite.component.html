@@ -1,0 +1,14 @@
+Total Packages: {{ totalPackages }}
+<table class="table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Version</th>
+    </tr>        
+
+    @for (package of explicitInstalledPackagesLite; track package) {
+        <tr>
+            <td>{{ package.name }}</td>
+            <td>{{ package.version }}</td>
+        </tr>
+    }
+</table>

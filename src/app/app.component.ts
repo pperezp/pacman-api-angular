@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { MainMenuComponent } from './main-menu/main-menu.component';
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
 
 @Component({
     selector: 'app-root',
