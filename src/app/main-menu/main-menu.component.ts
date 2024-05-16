@@ -25,7 +25,7 @@ export class MainMenuComponent {
         this.explicitInstalledPackages = []
     }
 
-    getInstalledPackages() {
+    getNativeInstalledPackages() {
         this.nativePackagesService.getExplicitInstalledPackages().subscribe(
             data => {
                 this.explicitInstalledPackages = data.packages; // no entiendo donde puedo dibujar esto
