@@ -5,32 +5,32 @@ import { Package } from '../model/Package';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-main-menu',
-  standalone: true,
-  imports: [HttpClientModule],
-  templateUrl: './main-menu.component.html',
-  styleUrl: './main-menu.component.css'
+    selector: 'app-main-menu',
+    standalone: true,
+    imports: [HttpClientModule],
+    templateUrl: './main-menu.component.html',
+    styleUrl: './main-menu.component.css'
 })
 export class MainMenuComponent {
 
-  explicitInstalledPackages: Package[];
-  totalPackages: number;
+    explicitInstalledPackages: Package[];
+    totalPackages: number;
 
-  constructor(
-    private router: Router,
-    private nativePackagesService: NativePackagesService
-  ) { 
-    // TODO: es necesario inicializar todos los atributos?
-    this.totalPackages = 0;
-    this.explicitInstalledPackages = []
-  }
-  
-  getInstalledPackages(){
-    this.nativePackagesService.getExplicitInstalledPackages().subscribe(
-      data => {
-        this.explicitInstalledPackages = data.packages; // no entiendo donde puedo dibujar esto
-        this.totalPackages = this.explicitInstalledPackages.length;
-      }
-    );
-  }
+    constructor(
+        private router: Router,
+        private nativePackagesService: NativePackagesService
+    ) {
+        // TODO: es necesario inicializar todos los atributos?
+        this.totalPackages = 0;
+        this.explicitInstalledPackages = []
+    }
+
+    getInstalledPackages() {
+        this.nativePackagesService.getExplicitInstalledPackages().subscribe(
+            data => {
+                this.explicitInstalledPackages = data.packages; // no entiendo donde puedo dibujar esto
+                this.totalPackages = this.explicitInstalledPackages.length;
+            }
+        );
+    }
 }
