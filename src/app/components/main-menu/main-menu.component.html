@@ -4,7 +4,7 @@
 <ul>
     <li><button (click)="getNativeInstalledPackages()">Get Installed Packages (Explicit)</button></li>
     <li><button (click)="getExplicitInstalledPackagesLite()">Get Installed Packages (Explicit) - Lite Version</button></li>
-    <li><button id="getPackagesToUpgradeBtn">Get Packages to Upgrade</button></li>
+    <li><button (click)="getPackagesToUpgrade()">Get Packages to Upgrade</button></li>
     <li><button id="getInstalledPackageByNameBtn">Get Installed Package by Name</button></li>
 </ul>
 
@@ -29,9 +29,20 @@
             [packages]="packages"
             [total]="total"/>
     }
+
     @case ("nativePackagesLite") {
         <app-native-installed-packages-explicit-lite
             [packages]="packages"
             [total]="total"/>
+    }
+
+    @case ("packagesToUpgrade") {
+        <app-native-packages-to-upgrade 
+            [packages]="packagesToUpgrade"
+            [total]="total"/>
+    }
+    
+    @case ("packagesToUpgradeError") {
+        {{ errorMessage }}
     }
 }

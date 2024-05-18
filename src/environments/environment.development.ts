@@ -1,4 +1,4 @@
 export const environment = {
-    SERVER_IP: "dlocalhost",
-    SERVER_PORT: "d8080"
+    SERVER_IP: "localhost",
+    SERVER_PORT: "8080"
 };

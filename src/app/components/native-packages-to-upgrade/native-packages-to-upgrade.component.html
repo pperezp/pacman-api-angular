@@ -1,0 +1,16 @@
+Total Packages: {{ total }}
+<table class="table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th>New version</th>
+    </tr>        
+
+    @for (package of packages; track package) {
+        <tr>
+            <td>{{ package.name }}</td>
+            <td>{{ package.version }}</td>
+            <td>{{ package.newVersion }}</td>
+        </tr>
+    }
+</table>
