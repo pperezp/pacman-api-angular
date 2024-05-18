@@ -5,7 +5,7 @@
     <li><button (click)="getNativeInstalledPackages()">Get Installed Packages (Explicit)</button></li>
     <li><button (click)="getExplicitInstalledPackagesLite()">Get Installed Packages (Explicit) - Lite Version</button></li>
     <li><button (click)="getPackagesToUpgrade()">Get Packages to Upgrade</button></li>
-    <li><button id="getInstalledPackageByNameBtn">Get Installed Package by Name</button></li>
+    <li><button (click)="getPackageByName()">Get Installed Package by Name</button></li>
 </ul>
 
 <h2>Foreign packages</h2>
@@ -41,8 +41,13 @@
             [packages]="packagesToUpgrade"
             [total]="total"/>
     }
+
+    @case ("packageByName") {
+        <app-native-package-by-name
+            [package]="package"/>
+    }
     
-    @case ("packagesToUpgradeError") {
+    @case ("errorView") {
         {{ errorMessage }}
     }
 }

@@ -1,0 +1,154 @@
+<table class="table-bordered">
+    <tr>
+        <td>Name</td>
+        <td>{{ package.name }}</td>
+    </tr>
+
+    <tr>
+        <td>Version</td>
+        <td>{{ package.version }}</td>
+    </tr>
+
+    <tr>
+        <td>Description</td>
+        <td>{{ package.description }}</td>
+    </tr>
+
+    <tr>
+        <td>Architecture</td>
+        <td>{{ package.architecture }}</td>
+    </tr>
+
+    <tr>
+        <td>URL</td>
+        <a href="{{ package.url }}" target="_blank">{{ package.url }}</a>
+    </tr>
+
+    <tr>
+        <td>Licences</td>
+        <td>{{ package.licences }}</td>
+    </tr>
+
+    <tr>
+        <td>Groups</td>
+        <td>
+            <ul>
+                @for (group of package.groups; track group){
+                    <li>{{ group }}</li>
+                }
+            </ul>    
+        </td>
+    </tr>
+
+    <tr>
+        <td>Provides</td>
+        <td>
+            <ul>
+                @for (provide of package.provides; track provide){
+                    <li>{{ provide }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Depends</td>
+        <td>
+            <ul>
+                @for (depend of package.depends; track depend){
+                    <li>{{ depend }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Optional Dependencies</td>
+        <td>
+            <ul>
+                @for (optionalDependency of package.optionalDependencies; track optionalDependency){
+                    <li>{{ optionalDependency }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Requested By</td>
+        <td>
+            <ul>
+                @for (requestedBy of package.requestedBy; track requestedBy){
+                    <li>{{ requestedBy }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Optional For</td>
+        <td>
+            <ul>
+                @for (optionalFor of package.optionalFor; track optionalFor){
+                    <li>{{ optionalFor }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>In Conflict With</td>
+        <td>
+            <ul>
+                @for (conflict of package.inConflictWith; track conflict){
+                    <li>{{ conflict }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Replaces</td>
+        <td>
+            <ul>
+                @for (replace of package.replaces; track replace){
+                    <li>{{ replace }}</li>
+                }
+            </ul>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Size</td>
+        <td>{{ package.size.value }} {{ package.size.unit }}</td>
+    </tr>
+
+    <tr>
+        <td>Manager</td>
+        <td>{{ package.manager }}</td>
+    </tr>
+
+    <tr>
+        <td>Creation Date Time</td>
+        <td>{{ package.creationDateTime }}</td>
+    </tr>
+
+    <tr>
+        <td>Install Date Time</td>
+        <td>{{ package.installDateTime }}</td>
+    </tr>
+
+    <tr>
+        <td>Reason Installation</td>
+        <td>{{ package.reasonInstallation }}</td>
+    </tr>
+
+    <tr>
+        <td>Installation Script</td>
+        <td>{{ package.installationScript }}</td>
+    </tr>
+
+    <tr>
+        <td>Validated By</td>
+        <td>{{ package.validatedBy }}</td>
+    </tr>      
+</table>

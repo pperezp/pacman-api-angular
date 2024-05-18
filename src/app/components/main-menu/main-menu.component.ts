@@ -7,12 +7,14 @@ import { NativePackagesService } from '../../services/native-packages.service';
 import { NativeInstalledPackagesExplicitLiteComponent } from '../native-installed-packages-explicit-lite/native-installed-packages-explicit-lite.component';
 import { PackagesToUpgrade } from '../../model/PackagesToUpgrade';
 import { NativePackagesToUpgradeComponent } from '../native-packages-to-upgrade/native-packages-to-upgrade.component';
+import { NativePackageByNameComponent } from '../native-package-by-name/native-package-by-name.component';
 
 @Component({
     selector: 'app-main-menu',
     standalone: true,
     imports: [HttpClientModule, NativeInstalledPackagesExplicitComponent,
-        NativeInstalledPackagesExplicitLiteComponent, NativePackagesToUpgradeComponent],
+        NativeInstalledPackagesExplicitLiteComponent, NativePackagesToUpgradeComponent,
+        NativePackageByNameComponent],
     templateUrl: './main-menu.component.html',
     styleUrl: './main-menu.component.css'
 })
@@ -25,6 +27,7 @@ export class MainMenuComponent {
     renderView!: string;
     packagesToUpgrade!: PackagesToUpgrade[];
     errorMessage!: string;
+    package!: Package;
 
     getNativeInstalledPackages() {
         this.nativePackagesService.getExplicitInstalledPackages().subscribe(
@@ -56,7 +59,7 @@ export class MainMenuComponent {
                 this.renderView = "packagesToUpgrade";
             },
             jsonError => {
-                this.renderView = "packagesToUpgradeError";
+                this.renderView = "errorView";
                 let httpCode = jsonError.status;
 
                 switch (httpCode) {
@@ -70,5 +73,24 @@ export class MainMenuComponent {
                 }
             }
         );
+    }
+
+    getPackageByName() {
+        let packageName = prompt("Package name") ?? ''; // ?? si es null ''
+
+        this.nativePackagesService.getPackageBy(packageName).subscribe({
+            next: (response) => {
+                this.renderView = "packageByName";
+                this.package = response.package;
+            },
+            error: (e) => {
+                this.renderView = "errorView";
+                let httpCode = e.status;
+
+                if (httpCode == 404) {
+                    this.errorMessage = e.error.message;
+                }
+            }
+        });
     }
 }

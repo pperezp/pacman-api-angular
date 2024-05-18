@@ -1,5 +1,5 @@
 import { Package } from "./Package";
 
-export interface ApiResponse {
+export interface GetPackagesResponse {
     packages: Package[];
 }
