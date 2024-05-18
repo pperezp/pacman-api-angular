@@ -1,4 +1,4 @@
-Total Packages: {{ totalPackages }}
+Total Packages: {{ total }}
 <table class="table-bordered">
     <tr>
         <th>Name</th>
@@ -24,7 +24,7 @@ Total Packages: {{ totalPackages }}
         <th>Validated By</th>
     </tr>        
 
-    @for (package of explicitInstalledPackages; track package) {
+    @for (package of packages; track package) {
         <tr>
             <td>{{ package.name }}</td>
             <td>{{ package.version }}</td>

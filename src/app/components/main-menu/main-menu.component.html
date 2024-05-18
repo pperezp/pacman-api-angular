@@ -23,14 +23,15 @@
     <li><button id="getPackageDetailsBtn">Get Package of group details</button></li>
 </ul>
 
-@if (explicitInstalledPackages && explicitInstalledPackages.length > 0) { 
-   <app-native-installed-packages-explicit 
-        [explicitInstalledPackages]="explicitInstalledPackages"
-        [totalPackages]="totalPackages"/>
-}
-
-@if (explicitInstalledPackagesLite && explicitInstalledPackagesLite.length > 0) { 
-    <app-native-installed-packages-explicit-lite
-        [explicitInstalledPackagesLite]="explicitInstalledPackagesLite"
-        [totalPackages]="totalPackages"/>
+@switch (renderView) {
+    @case ("nativePackages") {
+        <app-native-installed-packages-explicit 
+            [packages]="packages"
+            [total]="total"/>
+    }
+    @case ("nativePackagesLite") {
+        <app-native-installed-packages-explicit-lite
+            [packages]="packages"
+            [total]="total"/>
+    }
 }

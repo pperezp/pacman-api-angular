@@ -15,17 +15,18 @@ import { NativeInstalledPackagesExplicitLiteComponent } from '../native-installe
 })
 export class MainMenuComponent {
 
-    explicitInstalledPackages!: Package[];
-    explicitInstalledPackagesLite!: Package[];
-    totalPackages!: number;
-    nativePackagesService = inject(NativePackagesService)
-    router = inject(Router)
+    packages!: Package[];
+    total!: number;
+    nativePackagesService = inject(NativePackagesService);
+    router = inject(Router);
+    renderView!: string;
 
     getNativeInstalledPackages() {
         this.nativePackagesService.getExplicitInstalledPackages().subscribe(
             response => {
-                this.explicitInstalledPackages = response.packages;
-                this.totalPackages = this.explicitInstalledPackages.length;
+                this.packages = response.packages;
+                this.total = this.packages.length;
+                this.renderView = "nativePackages";
             }
         );
     }
@@ -33,9 +34,9 @@ export class MainMenuComponent {
     getExplicitInstalledPackagesLite() {
         this.nativePackagesService.getExplicitInstalledPackagesLite().subscribe(
             response => {
-                this.explicitInstalledPackagesLite = response.packages;
-                this.totalPackages = this.explicitInstalledPackagesLite.length;
-                console.log(response.packages);
+                this.packages = response.packages;
+                this.total = this.packages.length;
+                this.renderView = "nativePackagesLite";
             }
         );
     }

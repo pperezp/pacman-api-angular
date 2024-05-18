@@ -9,6 +9,6 @@ import { Package } from '../../model/Package';
     styleUrl: './native-installed-packages-explicit.component.css'
 })
 export class NativeInstalledPackagesExplicitComponent {
-    @Input() explicitInstalledPackages!: Package[];
-    @Input() totalPackages!: number;
+    @Input() packages!: Package[];
+    @Input() total!: number;
 }
