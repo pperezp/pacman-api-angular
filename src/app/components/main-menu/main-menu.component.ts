@@ -50,21 +50,21 @@ export class MainMenuComponent {
     }
 
     getPackagesToUpgrade() {
-        let rootPassword = prompt("Root password") ?? ''; // ?? si es null ''
+        let rootPassword = prompt("Root password") ?? '';
 
-        this.nativePackagesService.getPackagesToUpgrade(rootPassword).subscribe(
-            response => {
+        this.nativePackagesService.getPackagesToUpgrade(rootPassword).subscribe({
+            next: (response) => {
                 this.packagesToUpgrade = response.packages;
                 this.total = this.packagesToUpgrade.length;
                 this.renderView = "packagesToUpgrade";
             },
-            jsonError => {
+            error: (e) => {
                 this.renderView = "errorView";
-                let httpCode = jsonError.status;
+                let httpCode = e.status;
 
                 switch (httpCode) {
                     case 400:
-                        this.errorMessage = jsonError.error.message;
+                        this.errorMessage = e.error.message;
                         break;
 
                     case 204:
@@ -72,11 +72,11 @@ export class MainMenuComponent {
                         break;
                 }
             }
-        );
+        });
     }
 
     getPackageByName() {
-        let packageName = prompt("Package name") ?? ''; // ?? si es null ''
+        let packageName = prompt("Package name") ?? '';
 
         this.nativePackagesService.getPackageBy(packageName).subscribe({
             next: (response) => {
