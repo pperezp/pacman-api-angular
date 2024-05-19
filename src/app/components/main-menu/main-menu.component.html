@@ -1,52 +1,82 @@
-<h1>PacMan API Consumer</h1>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">PacMan API Consumer</a>
 
-<h2>Native packages</h2>
-<ul>
-    <li><button (click)="getNativeInstalledPackages()">Get Installed Packages (Explicit)</button></li>
-    <li><button (click)="getExplicitInstalledPackagesLite()">Get Installed Packages (Explicit) - Lite Version</button></li>
-    <li><button (click)="getPackagesToUpgrade()">Get Packages to Upgrade</button></li>
-    <li><button (click)="getPackageByName()">Get Installed Package by Name</button></li>
-</ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<h2>Foreign packages</h2>
-<ul>
-    <li><button id="getInstalledPackagesBtn2">Get Installed Packages (Explicit)</button></li>
-    <li><button id="getLiteInstalledPackagesBtn2">Get Installed Packages (Explicit) - Lite Version</button></li>
-    <li><button id="getPackagesToUpgradeBtn2">Get Packages to Upgrade</button></li>
-    <li><button id="getInstalledPackageByNameBtn2">Get Installed Package by Name</button></li>
-</ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Native packages
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" (click)="getNativeInstalledPackages()">Get Installed Packages
+                                (Explicit)</button></li>
+                        <li><button class="dropdown-item" (click)="getExplicitInstalledPackagesLite()">Get Installed
+                                Packages (Explicit) - Lite Version</button></li>
+                        <li><button class="dropdown-item" (click)="getPackagesToUpgrade()">Get Packages to
+                                Upgrade</button></li>
+                        <li><button class="dropdown-item" (click)="getPackageByName()">Get Installed Package by
+                                Name</button></li>
+                    </ul>
+                </li>
 
-<h2>Group packages</h2>
-<ul>
-    <li><button id="getGroupsBtn">Get PacMan Groups</button></li>
-    <li><button id="getPackagesByGroupBtn">Get Packages by Group</button></li>
-    <li><button id="getPackageDetailsBtn">Get Package of group details</button></li>
-</ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Foreign packages
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" id="getInstalledPackagesBtn2">Get Installed Packages
+                                (Explicit)</button></li>
+                        <li><button class="dropdown-item" id="getLiteInstalledPackagesBtn2">Get Installed Packages
+                                (Explicit) - Lite Version</button></li>
+                        <li><button class="dropdown-item" id="getPackagesToUpgradeBtn2">Get Packages to Upgrade</button>
+                        </li>
+                        <li><button class="dropdown-item" id="getInstalledPackageByNameBtn2">Get Installed Package by
+                                Name</button></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Group packages
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" id="getGroupsBtn">Get PacMan Groups</button></li>
+                        <li><button class="dropdown-item" id="getPackagesByGroupBtn">Get Packages by Group</button></li>
+                        <li><button class="dropdown-item" id="getPackageDetailsBtn">Get Package of group
+                                details</button></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 @switch (renderView) {
     @case ("nativePackages") {
-        <app-native-installed-packages-explicit 
-            [packages]="packages"
-            [total]="total"/>
+        <app-native-installed-packages-explicit [packages]="packages" [total]="total" />
     }
 
     @case ("nativePackagesLite") {
-        <app-native-installed-packages-explicit-lite
-            [packages]="packages"
-            [total]="total"/>
+        <app-native-installed-packages-explicit-lite [packages]="packages" [total]="total" />
     }
 
     @case ("packagesToUpgrade") {
-        <app-native-packages-to-upgrade 
-            [packages]="packagesToUpgrade"
-            [total]="total"/>
+        <app-native-packages-to-upgrade [packages]="packagesToUpgrade" [total]="total" />
     }
 
     @case ("packageByName") {
-        <app-native-package-by-name
-            [package]="package"/>
+        <app-native-package-by-name [package]="package" />
     }
-    
+
     @case ("errorView") {
         {{ errorMessage }}
     }
