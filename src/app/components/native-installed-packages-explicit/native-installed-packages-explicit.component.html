@@ -51,7 +51,9 @@ Total Packages: {{ total }}
             <td>
                 <ul>
                     @for (depend of package.depends; track depend){
-                        <li>{{ depend }}</li>
+                        <li>
+                            <a (click)="info(depend)" class="link">{{ depend }}</a>
+                        </li>
                     }
                 </ul>
             </td>

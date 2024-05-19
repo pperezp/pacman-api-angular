@@ -52,6 +52,10 @@ export class MainMenuComponent {
     getPackagesToUpgrade() {
         let rootPassword = prompt("Root password") ?? '';
 
+        if (!rootPassword) {
+            return;
+        }
+
         this.nativePackagesService.getPackagesToUpgrade(rootPassword).subscribe({
             next: (response) => {
                 this.packagesToUpgrade = response.packages;
@@ -77,6 +81,10 @@ export class MainMenuComponent {
 
     getPackageByName() {
         let packageName = prompt("Package name") ?? '';
+
+        if (!packageName) {
+            return;
+        }
 
         this.nativePackagesService.getPackageBy(packageName).subscribe({
             next: (response) => {

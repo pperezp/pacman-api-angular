@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Package } from '../../model/Package';
+import { ActivatedRoute } from '@angular/router';
+import { NativePackagesService } from '../../services/native-packages.service';
 
 @Component({
     selector: 'app-native-package-by-name',
@@ -8,6 +10,21 @@ import { Package } from '../../model/Package';
     templateUrl: './native-package-by-name.component.html',
     styleUrl: './native-package-by-name.component.css'
 })
-export class NativePackageByNameComponent {
+export class NativePackageByNameComponent implements OnInit {
+
     @Input() package!: Package;
+    route = inject(ActivatedRoute);
+    nativePackagesService = inject(NativePackagesService);
+
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(params => {
+            let packageName = params.get('packageName') ?? '';
+
+            this.nativePackagesService.getPackageBy(packageName).subscribe({
+                next: (response) => {
+                    this.package = response.package;
+                }
+            });
+        });
+    }
 }

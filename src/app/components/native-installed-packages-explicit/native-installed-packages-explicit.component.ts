@@ -9,6 +9,15 @@ import { Package } from '../../model/Package';
     styleUrl: './native-installed-packages-explicit.component.css'
 })
 export class NativeInstalledPackagesExplicitComponent {
+
     @Input() packages!: Package[];
     @Input() total!: number;
+
+    info(packageName: string) {
+        if (packageName == "Nada") {
+            return;
+        }
+
+        window.open(`/info/${packageName}`, '_blank');
+    }
 }
