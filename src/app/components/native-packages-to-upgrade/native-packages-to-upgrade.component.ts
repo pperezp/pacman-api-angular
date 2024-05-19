@@ -9,6 +9,15 @@ import { PackagesToUpgrade } from '../../model/PackagesToUpgrade';
     styleUrl: './native-packages-to-upgrade.component.css'
 })
 export class NativePackagesToUpgradeComponent {
+
     @Input() packages!: PackagesToUpgrade[];
     @Input() total!: number;
+
+    info(packageName: string) {
+        if (packageName == "Nada") {
+            return;
+        }
+        
+        window.open(`/info/${packageName}`, '_blank');
+    }
 }

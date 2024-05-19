@@ -2,6 +2,7 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { Package } from '../../model/Package';
 import { ActivatedRoute } from '@angular/router';
 import { NativePackagesService } from '../../services/native-packages.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: 'app-native-package-by-name',
@@ -15,10 +16,13 @@ export class NativePackageByNameComponent implements OnInit {
     @Input() package!: Package;
     route = inject(ActivatedRoute);
     nativePackagesService = inject(NativePackagesService);
+    title = inject(Title);
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
             let packageName = params.get('packageName') ?? '';
+
+            this.title.setTitle(packageName);
 
             this.nativePackagesService.getPackageBy(packageName).subscribe({
                 next: (response) => {
@@ -26,5 +30,13 @@ export class NativePackageByNameComponent implements OnInit {
                 }
             });
         });
+    }
+
+    info(packageName: string) {
+        if (packageName == "Nada") {
+            return;
+        }
+
+        window.open(`/info/${packageName}`);
     }
 }

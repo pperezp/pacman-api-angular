@@ -1,9 +1,5 @@
-.link {
-    color: blue;
-    text-decoration: underline;
+a {
+    color:rgb(145, 178, 241);
     cursor: pointer;
-}
-
-.link:hover {
-    color: darkblue;
+    text-decoration: none;
 }

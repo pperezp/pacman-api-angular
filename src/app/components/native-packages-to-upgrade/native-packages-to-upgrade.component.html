@@ -1,16 +1,22 @@
 Total Packages: {{ total }}
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Version</th>
-        <th>New version</th>
-    </tr>        
-
-    @for (package of packages; track package) {
+<table class="table table-striped table-bordered table-hover">
+    <thead>
         <tr>
-            <td>{{ package.name }}</td>
-            <td>{{ package.version }}</td>
-            <td>{{ package.newVersion }}</td>
-        </tr>
-    }
+            <th>Name</th>
+            <th>Version</th>
+            <th>New version</th>
+        </tr>  
+    </thead>      
+
+    <tbody>
+        @for (package of packages; track package) {
+            <tr>
+                <td>
+                    <a href="javascript:void(0)" (click)="info(package.name)">{{ package.name }}</a>
+                </td>
+                <td>{{ package.version }}</td>
+                <td>{{ package.newVersion }}</td>
+            </tr>
+        }
+    </tbody>
 </table>

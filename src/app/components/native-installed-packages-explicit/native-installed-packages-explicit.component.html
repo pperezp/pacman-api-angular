@@ -1,104 +1,110 @@
 Total Packages: {{ total }}
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Version</th>
-        <th>Description</th>
-        <th>Architecture</th>
-        <th>URL</th>
-        <th>Licences</th>
-        <th>Groups</th>
-        <th>Provides</th>
-        <th>Depends</th>
-        <th>Optional Dependencies</th>
-        <th>Requested By</th>
-        <th>Optional For</th>
-        <th>In Conflict With</th>
-        <th>Replaces</th>
-        <th>Size</th>
-        <th>Manager</th>
-        <th>Creation Date Time</th>
-        <th>Install Date Time</th>
-        <th>Reason Installation</th>
-        <th>Installation Script</th>
-        <th>Validated By</th>
-    </tr>        
-
-    @for (package of packages; track package) {
+<table class="table table-striped table-bordered table-hover">
+    <thead>
         <tr>
-            <td>{{ package.name }}</td>
-            <td>{{ package.version }}</td>
-            <td>{{ package.description }}</td>
-            <td>{{ package.architecture }}</td>
-            <td>
-                <a href="{{ package.url }}" target="_blank">{{ package.url }}</a>
-            </td>
-            <td>{{ package.licences }}</td>
-            <td>
-                <ul>
-                    @for (group of package.groups; track group){
-                        <li>{{ group }}</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (provide of package.provides; track provide){
-                        <li>{{ provide }}</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (depend of package.depends; track depend){
-                        <li>
-                            <a (click)="info(depend)" class="link">{{ depend }}</a>
-                        </li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (optionalDependency of package.optionalDependencies; track optionalDependency){
-                        <li>{{ optionalDependency }}</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (requestedBy of package.requestedBy; track requestedBy){
-                        <li>{{ requestedBy }}</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (optionalFor of package.optionalFor; track optionalFor){
-                        <li>{{ optionalFor }}</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (conflict of package.inConflictWith; track conflict){
-                        <li>{{ conflict }}</li>
-                    }
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    @for (replace of package.replaces; track replace){
-                        <li>{{ replace }}</li>
-                    }
-                </ul>
-            </td>
-            <td>{{ package.size.value }} {{ package.size.unit }}</td>
-            <td>{{ package.manager }}</td>
-            <td>{{ package.creationDateTime }}</td>
-            <td>{{ package.installDateTime }}</td>
-            <td>{{ package.reasonInstallation }}</td>
-            <td>{{ package.installationScript }}</td>
-            <td>{{ package.validatedBy }}</td>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Description</th>
+            <th>Architecture</th>
+            <th>URL</th>
+            <th>Licences</th>
+            <th>Groups</th>
+            <th>Provides</th>
+            <th>Depends</th>
+            <th>Optional Dependencies</th>
+            <th>Requested By</th>
+            <th>Optional For</th>
+            <th>In Conflict With</th>
+            <th>Replaces</th>
+            <th>Size</th>
+            <th>Manager</th>
+            <th>Creation Date Time</th>
+            <th>Install Date Time</th>
+            <th>Reason Installation</th>
+            <th>Installation Script</th>
+            <th>Validated By</th>
         </tr>
-    }
+    </thead>        
+
+    <tbody>
+        @for (package of packages; track package) {
+            <tr>
+                <td>
+                    <a href="javascript:void(0)" (click)="info(package.name)">{{ package.name }}</a>
+                </td>
+                <td>{{ package.version }}</td>
+                <td>{{ package.description }}</td>
+                <td>{{ package.architecture }}</td>
+                <td>
+                    <a href="{{ package.url }}" target="_blank">{{ package.url }}</a>
+                </td>
+                <td>{{ package.licences }}</td>
+                <td>
+                    <ul>
+                        @for (group of package.groups; track group){
+                            <li>{{ group }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (provide of package.provides; track provide){
+                            <li>{{ provide }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (depend of package.depends; track depend){
+                            <li>
+                                <a href="javascript:void(0)" (click)="info(depend)">{{ depend }}</a>
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (optionalDependency of package.optionalDependencies; track optionalDependency){
+                            <li>{{ optionalDependency }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (requestedBy of package.requestedBy; track requestedBy){
+                            <li>{{ requestedBy }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (optionalFor of package.optionalFor; track optionalFor){
+                            <li>{{ optionalFor }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (conflict of package.inConflictWith; track conflict){
+                            <li>{{ conflict }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @for (replace of package.replaces; track replace){
+                            <li>{{ replace }}</li>
+                        }
+                    </ul>
+                </td>
+                <td>{{ package.size.value }} {{ package.size.unit }}</td>
+                <td>{{ package.manager }}</td>
+                <td>{{ package.creationDateTime }}</td>
+                <td>{{ package.installDateTime }}</td>
+                <td>{{ package.reasonInstallation }}</td>
+                <td>{{ package.installationScript }}</td>
+                <td>{{ package.validatedBy }}</td>
+            </tr>
+        }
+    </tbody>
 </table>

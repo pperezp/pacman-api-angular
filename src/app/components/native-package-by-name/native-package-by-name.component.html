@@ -1,36 +1,38 @@
-<table class="table-bordered">
+<h1>{{ package.name }}</h1>
+
+<table class="table table-striped table-bordered table-hover">
     <tr>
-        <td>Name</td>
+        <th>Name</th>
         <td>{{ package.name }}</td>
     </tr>
 
     <tr>
-        <td>Version</td>
+        <th>Version</th>
         <td>{{ package.version }}</td>
     </tr>
 
     <tr>
-        <td>Description</td>
+        <th>Description</th>
         <td>{{ package.description }}</td>
     </tr>
 
     <tr>
-        <td>Architecture</td>
+        <th>Architecture</th>
         <td>{{ package.architecture }}</td>
     </tr>
 
     <tr>
-        <td>URL</td>
+        <th>URL</th>
         <a href="{{ package.url }}" target="_blank">{{ package.url }}</a>
     </tr>
 
     <tr>
-        <td>Licences</td>
+        <th>Licences</th>
         <td>{{ package.licences }}</td>
     </tr>
 
     <tr>
-        <td>Groups</td>
+        <th>Groups</th>
         <td>
             <ul>
                 @for (group of package.groups; track group){
@@ -41,7 +43,7 @@
     </tr>
 
     <tr>
-        <td>Provides</td>
+        <th>Provides</th>
         <td>
             <ul>
                 @for (provide of package.provides; track provide){
@@ -52,18 +54,20 @@
     </tr>
 
     <tr>
-        <td>Depends</td>
+        <th>Depends</th>
         <td>
             <ul>
                 @for (depend of package.depends; track depend){
-                    <li>{{ depend }}</li>
+                    <li>
+                        <a href="javascript:void(0)" (click)="info(depend)">{{ depend }}</a>
+                    </li>
                 }
             </ul>
         </td>
     </tr>
 
     <tr>
-        <td>Optional Dependencies</td>
+        <th>Optional Dependencies</th>
         <td>
             <ul>
                 @for (optionalDependency of package.optionalDependencies; track optionalDependency){
@@ -74,18 +78,20 @@
     </tr>
 
     <tr>
-        <td>Requested By</td>
+        <th>Requested By</th>
         <td>
             <ul>
                 @for (requestedBy of package.requestedBy; track requestedBy){
-                    <li>{{ requestedBy }}</li>
+                    <li>
+                        <a href="javascript:void(0)" (click)="info(requestedBy)">{{ requestedBy }}</a>    
+                    </li>
                 }
             </ul>
         </td>
     </tr>
 
     <tr>
-        <td>Optional For</td>
+        <th>Optional For</th>
         <td>
             <ul>
                 @for (optionalFor of package.optionalFor; track optionalFor){
@@ -96,7 +102,7 @@
     </tr>
 
     <tr>
-        <td>In Conflict With</td>
+        <th>In Conflict With</th>
         <td>
             <ul>
                 @for (conflict of package.inConflictWith; track conflict){
@@ -107,7 +113,7 @@
     </tr>
 
     <tr>
-        <td>Replaces</td>
+        <th>Replaces</th>
         <td>
             <ul>
                 @for (replace of package.replaces; track replace){
@@ -118,37 +124,37 @@
     </tr>
 
     <tr>
-        <td>Size</td>
+        <th>Size</th>
         <td>{{ package.size.value }} {{ package.size.unit }}</td>
     </tr>
 
     <tr>
-        <td>Manager</td>
+        <th>Manager</th>
         <td>{{ package.manager }}</td>
     </tr>
 
     <tr>
-        <td>Creation Date Time</td>
+        <th>Creation Date Time</th>
         <td>{{ package.creationDateTime }}</td>
     </tr>
 
     <tr>
-        <td>Install Date Time</td>
+        <th>Install Date Time</th>
         <td>{{ package.installDateTime }}</td>
     </tr>
 
     <tr>
-        <td>Reason Installation</td>
+        <th>Reason Installation</th>
         <td>{{ package.reasonInstallation }}</td>
     </tr>
 
     <tr>
-        <td>Installation Script</td>
+        <th>Installation Script</th>
         <td>{{ package.installationScript }}</td>
     </tr>
 
     <tr>
-        <td>Validated By</td>
+        <th>Validated By</th>
         <td>{{ package.validatedBy }}</td>
     </tr>      
 </table>
