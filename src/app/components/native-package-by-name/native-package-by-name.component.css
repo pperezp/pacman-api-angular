@@ -1,8 +1,0 @@
-.table-bordered {
-    border-collapse: collapse;
-    font-family: 'Lucida Console', Courier, monospace;
-}
-  
-.table-bordered th, .table-bordered td {
-    border: 1px solid black;
-}
