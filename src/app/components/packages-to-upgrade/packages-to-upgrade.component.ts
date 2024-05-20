@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { PackagesToUpgrade } from '../../model/PackagesToUpgrade';
 
 @Component({
-    selector: 'app-native-packages-to-upgrade',
+    selector: 'packages-to-upgrade',
     standalone: true,
     imports: [],
-    templateUrl: './native-packages-to-upgrade.component.html',
-    styleUrl: './native-packages-to-upgrade.component.css'
+    templateUrl: './packages-to-upgrade.component.html',
+    styleUrl: './packages-to-upgrade.component.css'
 })
-export class NativePackagesToUpgradeComponent {
+export class PackagesToUpgradeComponent {
 
     @Input() packages!: PackagesToUpgrade[];
     @Input() total!: number;

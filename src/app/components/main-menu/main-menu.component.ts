@@ -1,21 +1,25 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { NativeInstalledPackagesExplicitComponent } from '../native-installed-packages-explicit/native-installed-packages-explicit.component';
 import { Package } from '../../model/Package';
 import { NativePackagesService } from '../../services/native-packages.service';
-import { NativeInstalledPackagesExplicitLiteComponent } from '../native-installed-packages-explicit-lite/native-installed-packages-explicit-lite.component';
+import { ExplicitInstalledPackagesLiteComponent } from '../explicit-installed-packages-lite/explicit-installed-packages-lite.component';
 import { PackagesToUpgrade } from '../../model/PackagesToUpgrade';
-import { NativePackagesToUpgradeComponent } from '../native-packages-to-upgrade/native-packages-to-upgrade.component';
-import { NativePackageByNameComponent } from '../native-package-by-name/native-package-by-name.component';
+import { PackagesToUpgradeComponent } from '../packages-to-upgrade/packages-to-upgrade.component';
+import { PackageByNameComponent } from '../package-by-name/package-by-name.component';
 import { ForeignPackagesService } from '../../services/foreign-packages.service';
+import { ExplicitInstalledPackagesComponent } from '../explicit-installed-packages/explicit-installed-packages.component';
 
 @Component({
     selector: 'app-main-menu',
     standalone: true,
-    imports: [HttpClientModule, NativeInstalledPackagesExplicitComponent,
-        NativeInstalledPackagesExplicitLiteComponent, NativePackagesToUpgradeComponent,
-        NativePackageByNameComponent],
+    imports: [
+        HttpClientModule, 
+        ExplicitInstalledPackagesComponent,
+        ExplicitInstalledPackagesLiteComponent, 
+        PackagesToUpgradeComponent,
+        PackageByNameComponent
+    ],
     templateUrl: './main-menu.component.html',
     styleUrl: './main-menu.component.css'
 })

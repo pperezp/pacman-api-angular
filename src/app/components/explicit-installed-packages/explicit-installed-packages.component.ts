@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { Package } from '../../model/Package';
 
 @Component({
-    selector: 'app-native-installed-packages-explicit-lite',
+    selector: 'explicit-installed-packages',
     standalone: true,
     imports: [],
-    templateUrl: './native-installed-packages-explicit-lite.component.html',
-    styleUrl: './native-installed-packages-explicit-lite.component.css'
+    templateUrl: './explicit-installed-packages.component.html',
+    styleUrl: './explicit-installed-packages.component.css'
 })
-export class NativeInstalledPackagesExplicitLiteComponent {
+export class ExplicitInstalledPackagesComponent {
 
     @Input() packages!: Package[];
     @Input() total!: number;
@@ -18,7 +18,7 @@ export class NativeInstalledPackagesExplicitLiteComponent {
         if (packageName == "Nada") {
             return;
         }
-        
+
         window.open(`/info/${this.packageType}/${packageName}`, '_blank');
     }
 }

@@ -6,13 +6,13 @@ import { Title } from "@angular/platform-browser";
 import { ForeignPackagesService } from '../../services/foreign-packages.service';
 
 @Component({
-    selector: 'app-native-package-by-name',
+    selector: 'package-by-name',
     standalone: true,
     imports: [],
-    templateUrl: './native-package-by-name.component.html',
-    styleUrl: './native-package-by-name.component.css'
+    templateUrl: './package-by-name.component.html',
+    styleUrl: './package-by-name.component.css'
 })
-export class NativePackageByNameComponent implements OnInit {
+export class PackageByNameComponent implements OnInit {
 
     @Input() package!: Package;
     route = inject(ActivatedRoute);

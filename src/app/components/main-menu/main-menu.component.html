@@ -58,19 +58,19 @@
 
 @switch (renderView) {
     @case ("nativePackages") {
-        <app-native-installed-packages-explicit [packages]="packages" [total]="total" [packageType]="packageType" />
+        <explicit-installed-packages [packages]="packages" [total]="total" [packageType]="packageType" />
     }
 
     @case ("nativePackagesLite") {
-        <app-native-installed-packages-explicit-lite [packages]="packages" [total]="total" [packageType]="packageType"/>
+        <explicit-installed-packages-lite [packages]="packages" [total]="total" [packageType]="packageType"/>
     }
 
     @case ("packagesToUpgrade") {
-        <app-native-packages-to-upgrade [packages]="packagesToUpgrade" [total]="total" [packageType]="packageType"/>
+        <packages-to-upgrade [packages]="packagesToUpgrade" [total]="total" [packageType]="packageType"/>
     }
 
     @case ("packageByName") {
-        <app-native-package-by-name [package]="package"/>
+        <package-by-name [package]="package"/>
     }
 
     @case ("errorView") {

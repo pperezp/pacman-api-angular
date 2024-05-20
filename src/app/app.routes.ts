@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { NativePackageByNameComponent } from './components/native-package-by-name/native-package-by-name.component';
+import { PackageByNameComponent } from './components/package-by-name/package-by-name.component';
 
 export const routes: Routes = [
-    { path: 'info/:packageType/:packageName', component: NativePackageByNameComponent }
+    { path: 'info/:packageType/:packageName', component: PackageByNameComponent }
 ];
