@@ -8,6 +8,7 @@ import { NativeInstalledPackagesExplicitLiteComponent } from '../native-installe
 import { PackagesToUpgrade } from '../../model/PackagesToUpgrade';
 import { NativePackagesToUpgradeComponent } from '../native-packages-to-upgrade/native-packages-to-upgrade.component';
 import { NativePackageByNameComponent } from '../native-package-by-name/native-package-by-name.component';
+import { ForeignPackagesService } from '../../services/foreign-packages.service';
 
 @Component({
     selector: 'app-main-menu',
@@ -23,13 +24,16 @@ export class MainMenuComponent {
     packages!: Package[];
     total!: number;
     nativePackagesService = inject(NativePackagesService);
+    foreignPackagesService = inject(ForeignPackagesService);
     router = inject(Router);
     renderView!: string;
     packagesToUpgrade!: PackagesToUpgrade[];
     errorMessage!: string;
     package!: Package;
+    packageType!: string;
 
     getNativeInstalledPackages() {
+        this.packageType = "native";
         this.nativePackagesService.getExplicitInstalledPackages().subscribe(
             response => {
                 this.packages = response.packages;
@@ -40,6 +44,7 @@ export class MainMenuComponent {
     }
 
     getExplicitInstalledPackagesLite() {
+        this.packageType = "native";
         this.nativePackagesService.getExplicitInstalledPackagesLite().subscribe(
             response => {
                 this.packages = response.packages;
@@ -50,6 +55,7 @@ export class MainMenuComponent {
     }
 
     getPackagesToUpgrade() {
+        this.packageType = "native";
         let rootPassword = prompt("Root password") ?? '';
 
         if (!rootPassword) {
@@ -80,6 +86,7 @@ export class MainMenuComponent {
     }
 
     getPackageByName() {
+        this.packageType = "native";
         let packageName = prompt("Package name") ?? '';
 
         if (!packageName) {
@@ -87,6 +94,83 @@ export class MainMenuComponent {
         }
 
         this.nativePackagesService.getPackageBy(packageName).subscribe({
+            next: (response) => {
+                this.renderView = "packageByName";
+                this.package = response.package;
+            },
+            error: (e) => {
+                this.renderView = "errorView";
+                let httpCode = e.status;
+
+                if (httpCode == 404) {
+                    this.errorMessage = e.error.message;
+                }
+            }
+        });
+    }
+
+    getForeignInstalledPackages() {
+        this.packageType = "foreign";
+        this.foreignPackagesService.getExplicitInstalledPackages().subscribe(
+            response => {
+                this.packages = response.packages;
+                this.total = this.packages.length;
+                this.renderView = "nativePackages";
+            }
+        );
+    }
+
+    getForeignExplicitInstalledPackagesLite() {
+        this.packageType = "foreign";
+        this.foreignPackagesService.getExplicitInstalledPackagesLite().subscribe(
+            response => {
+                this.packages = response.packages;
+                this.total = this.packages.length;
+                this.renderView = "nativePackagesLite";
+            }
+        );
+    }
+
+    getForeignPackagesToUpgrade() {
+        this.packageType = "foreign";
+        let rootPassword = prompt("Root password") ?? '';
+
+        if (!rootPassword) {
+            return;
+        }
+
+        this.foreignPackagesService.getPackagesToUpgrade(rootPassword).subscribe({
+            next: (response) => {
+                this.packagesToUpgrade = response.packages;
+                this.total = this.packagesToUpgrade.length;
+                this.renderView = "packagesToUpgrade";
+            },
+            error: (e) => {
+                this.renderView = "errorView";
+                let httpCode = e.status;
+
+                switch (httpCode) {
+                    case 400:
+                        this.errorMessage = e.error.message;
+                        break;
+
+                    case 204:
+                        this.errorMessage = "No packages to upgrade";
+                        break;
+                }
+            }
+        });
+    }
+
+    getForeignPackageByName() {
+        this.packageType = "foreign";
+        let packageName = prompt("Package name") ?? '';
+
+        if (!packageName) {
+            return;
+        }
+
+        this.foreignPackagesService.getPackageBy(packageName).subscribe({
             next: (response) => {
                 this.renderView = "packageByName";
                 this.package = response.package;

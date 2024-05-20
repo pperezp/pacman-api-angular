@@ -21,8 +21,6 @@
                                 Packages (Explicit) - Lite Version</button></li>
                         <li><button class="dropdown-item" (click)="getPackagesToUpgrade()">Get Packages to
                                 Upgrade</button></li>
-                        <li><button class="dropdown-item" (click)="getPackageByName()">Get Installed Package by
-                                Name</button></li>
                     </ul>
                 </li>
 
@@ -32,14 +30,12 @@
                         Foreign packages
                     </a>
                     <ul class="dropdown-menu">
-                        <li><button class="dropdown-item" id="getInstalledPackagesBtn2">Get Installed Packages
+                        <li><button class="dropdown-item" (click)="getForeignInstalledPackages()">Get Installed Packages
                                 (Explicit)</button></li>
-                        <li><button class="dropdown-item" id="getLiteInstalledPackagesBtn2">Get Installed Packages
+                        <li><button class="dropdown-item" (click)="getForeignExplicitInstalledPackagesLite()">Get Installed Packages
                                 (Explicit) - Lite Version</button></li>
-                        <li><button class="dropdown-item" id="getPackagesToUpgradeBtn2">Get Packages to Upgrade</button>
+                        <li><button class="dropdown-item" (click)="getForeignPackagesToUpgrade()">Get Packages to Upgrade</button>
                         </li>
-                        <li><button class="dropdown-item" id="getInstalledPackageByNameBtn2">Get Installed Package by
-                                Name</button></li>
                     </ul>
                 </li>
 
@@ -62,19 +58,19 @@
 
 @switch (renderView) {
     @case ("nativePackages") {
-        <app-native-installed-packages-explicit [packages]="packages" [total]="total" />
+        <app-native-installed-packages-explicit [packages]="packages" [total]="total" [packageType]="packageType" />
     }
 
     @case ("nativePackagesLite") {
-        <app-native-installed-packages-explicit-lite [packages]="packages" [total]="total" />
+        <app-native-installed-packages-explicit-lite [packages]="packages" [total]="total" [packageType]="packageType"/>
     }
 
     @case ("packagesToUpgrade") {
-        <app-native-packages-to-upgrade [packages]="packagesToUpgrade" [total]="total" />
+        <app-native-packages-to-upgrade [packages]="packagesToUpgrade" [total]="total" [packageType]="packageType"/>
     }
 
     @case ("packageByName") {
-        <app-native-package-by-name [package]="package" />
+        <app-native-package-by-name [package]="package"/>
     }
 
     @case ("errorView") {

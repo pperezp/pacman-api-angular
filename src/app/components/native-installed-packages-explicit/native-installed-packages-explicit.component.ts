@@ -12,12 +12,13 @@ export class NativeInstalledPackagesExplicitComponent {
 
     @Input() packages!: Package[];
     @Input() total!: number;
+    @Input() packageType!: string;
 
     info(packageName: string) {
         if (packageName == "Nada") {
             return;
         }
 
-        window.open(`/info/${packageName}`, '_blank');
+        window.open(`/info/${this.packageType}/${packageName}`, '_blank');
     }
 }
