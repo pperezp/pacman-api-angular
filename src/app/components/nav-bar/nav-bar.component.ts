@@ -11,7 +11,7 @@ import { ForeignPackagesService } from '../../services/foreign-packages.service'
 import { ExplicitInstalledPackagesComponent } from '../explicit-installed-packages/explicit-installed-packages.component';
 
 @Component({
-    selector: 'app-main-menu',
+    selector: 'nav-bar',
     standalone: true,
     imports: [
         HttpClientModule, 
@@ -20,8 +20,8 @@ import { ExplicitInstalledPackagesComponent } from '../explicit-installed-packag
         PackagesToUpgradeComponent,
         PackageByNameComponent
     ],
-    templateUrl: './main-menu.component.html',
-    styleUrl: './main-menu.component.css'
+    templateUrl: './nav-bar.component.html',
+    styleUrl: './nav-bar.component.css'
 })
 export class MainMenuComponent {
 
